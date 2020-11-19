@@ -1,0 +1,19 @@
+= form_for @subscription do |f|
+  - if @subscription.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@subscription.errors.count, "error")} prohibited this subscription from being saved:"
+      %ul
+        - @subscription.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :tier
+    = f.text_field :tier
+  .field
+    = f.label :price
+    = f.text_field :price
+  .field
+    = f.label :user
+    = f.text_field :user
+  .actions
+    = f.submit 'Save'

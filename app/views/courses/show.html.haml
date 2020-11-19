@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @course.title
+%p
+  %b Description:
+  = @course.description
+%p
+  %b Starts:
+  = @course.starts
+%p
+  %b Ends:
+  = @course.ends
+%p
+  %b Status:
+  = @course.status
+
+= link_to 'Edit', edit_course_path(@course)
+\|
+= link_to 'Back', courses_path
