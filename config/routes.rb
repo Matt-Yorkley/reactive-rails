@@ -2,7 +2,13 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "home#index"
 
-  resources :subscriptions
-  resources :courses
-  resources :users
+  resources :subscriptions, only: [:index, :show]
+  resources :courses, only: [:index, :show]
+  resources :users, only: [:index, :show]
+
+  namespace :admin do
+    resources :subscriptions
+    resources :courses
+    resources :users
+  end
 end
