@@ -22,6 +22,7 @@ gem 'webpacker'
 gem 'haml-rails', '>= 2.0'
 # Bulma CSS... <3
 gem 'bulma-rails', '~> 0.9.0'
+gem 'devise'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
