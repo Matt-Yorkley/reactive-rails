@@ -1,4 +1,4 @@
-= form_for [:admin, @user] do |f|
+= form_for @user do |f|
   - if @user.errors.any?
     #error_explanation
       %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
@@ -15,8 +15,5 @@
   .field
     = f.label :email
     = f.text_field :email
-  .field
-    = f.label :subscription
-    = f.text_field :subscription
   .actions
     = f.submit 'Save'

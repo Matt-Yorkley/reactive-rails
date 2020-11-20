@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :subscriptions, only: [:index, :show]
   resources :courses, only: [:index, :show]
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show, :update]
 
   namespace :admin do
     resources :subscriptions

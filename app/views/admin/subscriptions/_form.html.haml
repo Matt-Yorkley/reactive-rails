@@ -1,4 +1,4 @@
-= form_for @subscription do |f|
+= form_for [@admin, @subscription] do |f|
   - if @subscription.errors.any?
     #error_explanation
       %h2= "#{pluralize(@subscription.errors.count, "error")} prohibited this subscription from being saved:"

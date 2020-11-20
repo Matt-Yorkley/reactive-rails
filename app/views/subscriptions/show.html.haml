@@ -6,10 +6,6 @@
 %p
   %b Price:
   = @subscription.price
-%p
-  %b User:
-  = @subscription.user
 
-= link_to 'Edit', edit_subscription_path(@subscription)
 \|
 = link_to 'Back', subscriptions_path
