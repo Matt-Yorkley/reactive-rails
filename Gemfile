@@ -18,11 +18,12 @@ gem 'webpacker'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
-# HAML, plus HAML-based generators and scaffolds
-gem 'haml-rails', '>= 2.0'
-# Bulma CSS... <3
-gem 'bulma-rails', '~> 0.9.0'
+gem 'haml-rails', '>= 2.0' # HAML, plus HAML-based generators and scaffolds
+gem 'bulma-rails', '~> 0.9.0' # Bulma CSS... <3
 gem 'devise'
+gem 'ransack'
+gem 'pagy', '~> 3.5'
+gem 'faker' # Generate nice seed data
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
