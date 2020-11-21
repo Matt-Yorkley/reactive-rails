@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_21_210852) do
+ActiveRecord::Schema.define(version: 2020_11_21_214525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2020_11_21_210852) do
     t.boolean "public", default: true
     t.bigint "subscription_id"
     t.string "tutor"
+    t.string "image"
     t.index ["subscription_id"], name: "index_courses_on_subscription_id"
   end
 
