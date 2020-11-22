@@ -1,0 +1,9 @@
+#flash
+  - if flash.notice
+    .flash.animate-hide
+      %p.notice.notification.is-info
+        = notice
+  - if flash.alert
+    .flash.animate-hide
+      %p.alert.notification.is-danger
+        = alert

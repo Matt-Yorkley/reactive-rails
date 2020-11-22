@@ -1,0 +1,52 @@
+= form_tag 'courses/bulk_update' do
+  = hidden_field_tag :authenticity_token, form_authenticity_token
+  %table.table.is-striped.is-fullwidth.is-hoverable
+    %thead
+      %tr
+        %th
+        %th Title
+        %th Tier
+        %th Starts
+        %th Ends
+        %th Ended
+        %th Status
+        %th Public
+        %th
+          = submit_tag 'Apply', class: 'button is-small is-pulled-right'
+          .select.is-small.is-pulled-right
+            = select_tag 'course[status]',
+              options_for_select([['Set Status', '']] + Course::STATUSES.map{ |status| [status.capitalize, status] })
+
+
+    %tbody
+      - @courses.each do |course|
+        %tr
+          %td
+            = check_box_tag "ids[]", course.id
+          %td= course.title
+          %td= course.subscription.tier
+          %td= course.starts.strftime('%B %e')
+          %td= course.ends.strftime('%B %e')
+          %td= course.ends < Time.now ? 'Yes' : 'No'
+          %td
+            %span.tag{ class: course_status_class(course.status) }
+              = course.status
+          %td
+            = course.public ? 'Yes' : 'No'
+          %td
+            .buttons.is-pulled-right
+              = link_to course, class: 'button is-small' do
+                %span.icon.has-text-link
+                  %i.fa.fa-lg.fa-eye
+                %span View
+              = link_to edit_admin_course_path(course), class: 'button is-small' do
+                %span.icon.has-text-link
+                  %i.fa.fa-lg.fa-edit
+                %span Edit
+              = link_to admin_course_path(course), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-small' do
+                %span.icon.has-text-danger
+                  %i.fa.fa-lg.fa-trash
+                %span Delete
+
+- if @courses.count.zero?
+  = render 'shared/no_results'

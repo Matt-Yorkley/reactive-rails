@@ -1,0 +1,15 @@
+= search_form_for @q, local:true do |f|
+  .columns
+    .column.is-narrow
+      .field
+        .control
+          = f.text_field :title_or_description_or_tutor_cont, class: 'input', placeholder: 'Search'
+    .column.is-narrow
+      .field
+        .control
+          .select
+            = f.select :subscription_tier_eq, Subscription.all.map(&:tier), { include_blank: 'Tier: all' }
+    .column
+      .buttons
+        = f.submit 'Search', class: 'button is-success'
+        %a.button{ href: request.path } Clear

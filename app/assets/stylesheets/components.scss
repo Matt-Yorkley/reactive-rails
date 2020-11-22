@@ -1,0 +1,123 @@
+@import 'bulma.sass';
+
+.filter-bar {
+  margin-bottom: 1em;
+  padding: 1em;
+  border: 1px solid #ddd;
+  border-radius: 0.3em;
+}
+
+.title-bar {
+  margin-top: 1em;
+}
+
+.subscription-card {
+  text-align: center;
+}
+
+.footer-links {
+  .title {
+    padding-left: 0.5em;
+    color: $grey;
+  }
+  .menu-list {
+    a:hover {
+      background-color: $info;
+      color: $white;
+    }
+  }
+}
+
+.course-filters {
+  padding-bottom: 0.75em;
+  margin-top: 0.75em;
+  background-color: #1e414f;
+}
+
+.courses {
+  padding: 1.5em 0 3em;
+}
+
+.course-card {
+  .card-image {
+    .tag {
+      position: absolute;
+      right: -0.5em;
+      top: 0.5em;
+      border-radius: unset;
+    }
+  }
+
+  .card-content {
+    position: relative;
+    min-height: 13em;
+    margin-bottom: 1.5em;
+  }
+}
+
+.homepage-hero {
+  background-image: url(home-hero.jpg);
+  background-size: cover;
+}
+
+.homepage-infobox {
+  text-align: center;
+
+  .icon {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+  }
+}
+
+.flash {
+  width: 50%;
+  position: absolute;
+  z-index: 500;
+  right: 25%;
+  top: 1.5em;
+  box-shadow: $box-shadow;
+}
+
+.no-results {
+  font-size: 1.25em;
+
+  .icon {
+    font-size: 2em;
+    margin-top: 0.45em;
+    margin-right: 0.25em;
+  }
+}
+
+.admin {
+  .table {
+    margin-bottom: 1em;
+  }
+}
+
+.pagination-list {
+  margin-bottom: 1em;
+}
+
+.field_with_errors {
+  label {
+    margin-bottom: 0.5em;
+  }
+
+  input, textarea {
+    border-color: $danger;
+
+    &:hover, &:focus {
+      border-color: $danger;
+      box-shadow: 0 0 0 0.125em rgba($danger, 0.25)
+    }
+  }
+}
+
+.navbar {
+  padding: 0 1em;
+
+  .navbar-menu {
+    padding: 0;
+    box-shadow: none;
+  }
+}

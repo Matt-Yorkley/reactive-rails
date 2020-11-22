@@ -21,7 +21,7 @@ module Admin
 
       respond_to do |format|
         if @subscription.save
-          format.html { redirect_to admin_subscription_path(@subscription), notice: 'Subscription was successfully created.' }
+          format.html { redirect_to admin_subscriptions_path, notice: 'Subscription was successfully created.' }
           format.json { render :show, status: :created, location: @subscription }
         else
           format.html { render :new }
@@ -33,7 +33,7 @@ module Admin
     def update
       respond_to do |format|
         if @subscription.update(subscription_params)
-          format.html { redirect_to admin_subscription_path(@subscription), notice: 'Subscription was successfully updated.' }
+          format.html { redirect_to admin_subscriptions_path, notice: 'Subscription was successfully updated.' }
           format.json { render :show, status: :ok, location: @subscription }
         else
           format.html { render :edit }

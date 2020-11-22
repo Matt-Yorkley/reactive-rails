@@ -1,29 +1,15 @@
-%h1 Listing courses
+%section.hero.is-info.is-bold
+  .hero-body
+    .container
+      %h1.title
+        Courses
+      %h2.subtitle
+        Find courses and seminars
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th Description
-      %th Starts
-      %th Ends
-      %th Status
-      %th
-      %th
-      %th
+.course-filters
+  .container
+    = render 'filters'
 
-  %tbody
-    - @courses.each do |course|
-      %tr
-        %td= course.title
-        %td= course.description
-        %td= course.starts
-        %td= course.ends
-        %td= course.status
-        %td= link_to 'Show', course
-        %td= link_to 'Edit', edit_course_path(course)
-        %td= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Course', new_course_path
+.courses.has-background-light
+  .container
+    = render 'courses'

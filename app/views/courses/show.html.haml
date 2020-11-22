@@ -1,21 +1,23 @@
-%p#notice= notice
+.section.has-background-light
+  .container
+    .columns.box
+      .column
+        %span.tag.is-medium.is-pulled-right{class: course_status_class(@course.status)}
+          = @course.status
+        %h1.title
+          = @course.title
+        %p.subtitle
+          = @course.tutor
+        %p
+          = @course.description
+        %hr
+        %p
+          %b Date(s):
+          = display_course_dates(@course)
+        %br
 
-%p
-  %b Title:
-  = @course.title
-%p
-  %b Description:
-  = @course.description
-%p
-  %b Starts:
-  = @course.starts
-%p
-  %b Ends:
-  = @course.ends
-%p
-  %b Status:
-  = @course.status
+        = link_to 'Back', courses_path, class: 'button is-link'
 
-= link_to 'Edit', edit_course_path(@course)
-\|
-= link_to 'Back', courses_path
+      .column.is-two-fifths
+        = image_tag "courses/#{@course.image}"
+

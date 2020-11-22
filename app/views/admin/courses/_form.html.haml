@@ -1,25 +1,34 @@
 = form_for [:admin, @course] do |f|
-  - if @course.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@course.errors.count, "error")} prohibited this course from being saved:"
-      %ul
-        - @course.errors.full_messages.each do |message|
-          %li= message
-
   .field
-    = f.label :title
-    = f.text_field :title
+    = f.label :title, class: 'label'
+    = f.text_field :title, class: 'input'
+    = field_errors(@course, :title)
   .field
-    = f.label :description
-    = f.text_area :description
+    = f.label :tutor, class: 'label'
+    = f.text_field :tutor, class: 'input'
+    = field_errors(@course, :tutor)
   .field
-    = f.label :starts
+    = f.label :description, class: 'label'
+    = f.text_area :description, class: 'textarea'
+    = field_errors(@course, :description)
+  .field
+    = f.label :starts, class: 'label'
     = f.date_select :starts
   .field
-    = f.label :ends
+    = f.label :ends, class: 'label'
     = f.date_select :ends
   .field
-    = f.label :status
-    = f.text_field :status
-  .actions
-    = f.submit 'Save'
+    = f.label :status, class: 'label'
+    .select
+      = f.select :status, Course::STATUSES
+  .field
+    = f.label :public, class: 'label'
+    = f.check_box :public
+  .field
+    = f.label :subscription, class: 'label'
+    .select
+      = f.collection_select :subscription_id, Subscription.all, :id, :tier
+  .actions.buttons
+    = f.submit 'Save', class: 'button is-success'
+    = link_to 'Back', admin_courses_path, class: 'button'
+

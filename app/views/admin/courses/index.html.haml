@@ -1,29 +1,18 @@
-%h1 Listing courses
+.level.title-bar
+  .level-left
+    .level-item
+      %h1.title.is-4 Listing courses
+  .level-right
+    .level-item
+      = link_to new_admin_course_path, class: 'button is-success is-outlined' do
+        %span.icon
+          %i.fa.fa-plus
+        %span New Course
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th Description
-      %th Starts
-      %th Ends
-      %th Status
-      %th
-      %th
-      %th
 
-  %tbody
-    - @courses.each do |course|
-      %tr
-        %td= course.title
-        %td= course.description
-        %td= course.starts
-        %td= course.ends
-        %td= course.status
-        %td= link_to 'Show', course
-        %td= link_to 'Edit', edit_admin_course_path(course)
-        %td= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }
+= render 'filters'
 
-%br
+= render 'table'
 
-= link_to 'New Course', new_admin_course_path
+= render partial: 'shared/pagination', locals: { pagy: @pagy } if @pagy.pages > 1
+

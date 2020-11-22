@@ -1,0 +1,26 @@
+- @courses.in_groups_of(3, false).each do |group|
+  .tile.is-ancestor
+    - group.each do |course|
+      .tile.is-parent.is-4
+        .tile.is-child.card.course-card
+          .card-image
+            = link_to course do
+              %span.tag.is-medium{class: course_status_class(course.status)}
+                = course.status
+              = image_tag "courses/#{course.image}"
+          .card-content
+            = link_to course do
+              %h2.title= course.title
+            %h3.subtitle.has-text-grey= course.tutor
+
+            .is-pulled-bottom
+              %p
+                %b Tier:
+                = course.subscription.tier
+              %p
+                %b Date(s):
+                = display_course_dates(course)
+
+- if @courses.count.zero?
+  .section
+    = render 'shared/no_results'

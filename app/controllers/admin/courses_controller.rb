@@ -3,7 +3,8 @@ module Admin
     before_action :set_course, only: [:show, :edit, :update, :destroy]
 
     def index
-      @courses = Course.all
+      @q = Course.order(:created_at).ransack(params[:q])
+      @pagy, @courses = pagy(@q.result, items: 6)
     end
 
     def show
@@ -21,7 +22,7 @@ module Admin
 
       respond_to do |format|
         if @course.save
-          format.html { redirect_to admin_course_path(@course), notice: 'Course was successfully created.' }
+          format.html { redirect_to admin_courses_path, notice: 'Course was successfully created.' }
           format.json { render :show, status: :created, location: @course }
         else
           format.html { render :new }
@@ -33,7 +34,7 @@ module Admin
     def update
       respond_to do |format|
         if @course.update(course_params)
-          format.html { redirect_to admin_course_path(@course), notice: 'Course was successfully updated.' }
+          format.html { redirect_to admin_courses_path, notice: 'Course was successfully updated.' }
           format.json { render :show, status: :ok, location: @course }
         else
           format.html { render :edit }
@@ -50,6 +51,18 @@ module Admin
       end
     end
 
+    def bulk_update
+      @courses = Course.where(id: params[:ids]).all
+
+      respond_to do |format|
+        if @courses.update_all(bulk_params.to_h)
+          format.html { redirect_to admin_courses_path, notice: 'Courses successfully updated.' }
+        else
+          format.html { redirect_to admin_courses_path, alert: 'An error occurred whilst updating courses.' }
+        end
+      end
+    end
+
     private
 
     def set_course
@@ -57,7 +70,13 @@ module Admin
     end
 
     def course_params
-      params.require(:course).permit(:title, :description, :starts, :ends, :status)
+      params.require(:course).permit(
+        :title, :tutor, :description, :starts, :ends, :status, :public, :subscription_id
+      )
+    end
+
+    def bulk_params
+      params.require(:course).permit(:status)
     end
   end
 end

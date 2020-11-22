@@ -3,7 +3,8 @@ module Admin
     before_action :set_user, only: [:show, :edit, :update, :destroy]
 
     def index
-      @users = User.all
+      @q = User.ransack(params[:q])
+      @pagy, @users = pagy(@q.result)
     end
 
     def show
@@ -21,7 +22,7 @@ module Admin
 
       respond_to do |format|
         if @user.save
-          format.html { redirect_to admin_user_path(@user), notice: 'User was successfully created.' }
+          format.html { redirect_to admin_users_path, notice: 'User was successfully created.' }
           format.json { render :show, status: :created, location: @user }
         else
           format.html { render :new }
@@ -33,7 +34,7 @@ module Admin
     def update
       respond_to do |format|
         if @user.update(user_params)
-          format.html { redirect_to admin_user_path(@user), notice: 'User was successfully updated.' }
+          format.html { redirect_to admin_users_path, notice: 'User was successfully updated.' }
           format.json { render :show, status: :ok, location: @user }
         else
           format.html { render :edit }
@@ -57,7 +58,7 @@ module Admin
     end
 
     def user_params
-      params.require(:user).permit(:name, :username, :email, :subscription_id)
+      params.require(:user).permit(:name, :username, :email, :subscription_id, :admin)
     end
   end
 end

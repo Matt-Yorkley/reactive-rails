@@ -1,19 +1,12 @@
-= form_for [@admin, @subscription] do |f|
-  - if @subscription.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@subscription.errors.count, "error")} prohibited this subscription from being saved:"
-      %ul
-        - @subscription.errors.full_messages.each do |message|
-          %li= message
-
+= form_for [:admin, @subscription] do |f|
   .field
-    = f.label :tier
-    = f.text_field :tier
+    = f.label :tier, class: 'label'
+    = f.text_field :tier, class: 'input'
+    = field_errors(@subscription, :tier)
   .field
-    = f.label :price
-    = f.text_field :price
-  .field
-    = f.label :user
-    = f.text_field :user
-  .actions
-    = f.submit 'Save'
+    = f.label :price, class: 'label'
+    = f.text_field :price, class: 'input'
+    = field_errors(@subscription, :price)
+  .actions.buttons
+    = f.submit 'Save', class: 'button is-success'
+    = link_to 'Back', admin_subscriptions_path, class: 'button'

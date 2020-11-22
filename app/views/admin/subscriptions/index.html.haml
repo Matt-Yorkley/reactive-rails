@@ -1,13 +1,13 @@
-%h1 Listing subscriptions
+.level.title-bar
+  .level-left
+    .level-item
+      %h1.title.is-4 Listing subscriptions
 
-%table
+%table.table.is-striped.is-fullwidth.is-hoverable
   %thead
     %tr
       %th Tier
       %th Price
-      %th User
-      %th
-      %th
       %th
 
   %tbody
@@ -15,11 +15,16 @@
       %tr
         %td= subscription.tier
         %td= subscription.price
-        %td= subscription.user
-        %td= link_to 'Show', subscription
-        %td= link_to 'Edit', edit_admin_subscription_path(subscription)
-        %td= link_to 'Destroy', subscription, method: :delete, data: { confirm: 'Are you sure?' }
+        %td
+          .buttons.is-pulled-right
+            = link_to edit_admin_subscription_path(subscription), class: 'button is-small' do
+              %span.icon.has-text-link
+                %i.fa.fa-lg.fa-edit
+              %span Edit
+            = link_to admin_subscription_path(subscription), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-small' do
+              %span.icon.has-text-danger
+                %i.fa.fa-lg.fa-trash
+              %span Delete
 
-%br
-
-= link_to 'New Subscription', new_admin_subscription_path
+- if @subscriptions.count.zero?
+  = render 'shared/no_results'

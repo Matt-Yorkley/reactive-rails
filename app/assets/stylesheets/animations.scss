@@ -1,0 +1,9 @@
+@keyframes fade-out-hide {
+  0%   {opacity: 1; visibility: visible;}
+  99%  {opacity: 0; visibility: visible;}
+  100% {opacity: 0; visibility: hidden;}
+}
+
+.animate-hide {
+  animation: fade-out-hide 0.5s forwards 2s;
+}

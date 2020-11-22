@@ -1,0 +1,52 @@
+%footer.footer.has-background-grey-lighter
+  .container
+    .columns
+      .column
+        %p.title.is-5.has-text-grey
+          Disclaimer
+        %p.has-text-grey
+          CÖRS is a hastily-created example Rails app. It's not meant to be production code.
+      .column
+        .menu.footer-links
+          %p.title.is-5
+            Quick Links
+          %ul.menu-list
+            %li
+              = link_to 'Sign Up', new_user_registration_path
+            %li
+              = link_to 'Courses', courses_path
+            %li
+              = link_to 'Subscriptions', subscriptions_path
+      .column
+        .menu.footer-links
+          %p.title.is-5
+            Site Info
+          %ul.menu-list
+            %li
+              %a{ href: '#'} Terms and Conditions
+            %li
+              %a{ href: '#'} Cookies Policy
+            %li
+              %a{ href: '#'} Privacy Policy
+      .column
+        .menu.footer-links
+          %p.title.is-5
+            Site Info
+          %ul.menu-list
+            %li
+              %a{ href: '#'} Terms and Conditions
+            %li
+              %a{ href: '#'} Cookies Policy
+            %li
+              %a{ href: '#'} Privacy Policy
+      .column
+        .menu.footer-links
+          %p.title.is-5
+            StimulusReflex
+          %ul.menu-list
+            %li
+              = link_to 'StimulusReflex on Github', 'https://github.com/hopsoft/stimulus_reflex'
+            %li
+              = link_to 'StimulusReflex Docs', 'https://docs.stimulusreflex.com'
+            %li
+              = link_to 'StimulusReflex Examples', 'https://expo.stimulusreflex.com'

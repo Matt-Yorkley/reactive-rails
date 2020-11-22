@@ -1,18 +1,35 @@
-%h1 Listing subscriptions
+%section.hero.is-bold.is-info
+  .hero-body
+    .container
+      %h1.title
+        Subscriptions
+      %h2.subtitle
+        Choose your subscription level
 
-%table
-  %thead
-    %tr
-      %th Tier
-      %th Price
-      %th
+.section.has-background-light
+  .container
+    .columns
+      - @subscriptions.each do |subscription|
+        .column
+          .card.subscription-card
+            .card-content
+              %h3.title
+                = subscription.tier
+                %span.icon.has-text-warning
+                  %i.fa{ class: subscription_star_icon(subscription) }
 
-  %tbody
-    - @subscriptions.each do |subscription|
-      %tr
-        %td= subscription.tier
-        %td= subscription.price
-        %td= link_to 'Show', subscription
+              %hr
 
-%br
+              - subscription_features(subscription).each do |feature|
+                %p
+                  %span
+                    = feature
+                  %span.icon.has-text-success
+                    %i.fa.fa-check
 
+              %hr
+
+              %p
+                %span.title.is-4
+                  = display_price(subscription.price)
+                %span.has-text-grey / month
