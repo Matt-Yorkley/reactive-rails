@@ -1,31 +1,36 @@
 .filter-bar.has-background-link-light
-  = search_form_for [:admin, @q], local:true do |f|
+  = search_form_for [:admin, @q] do |f|
     .columns
       .column.is-narrow
         .field
           .control
-            = f.text_field :title_or_description_or_tutor_cont, class: 'input', placeholder: 'Search'
+            = f.text_field :title_or_description_or_tutor_cont,
+              class: 'input',
+              placeholder: 'Search',
+              data: { reflex: 'input' }
       .column.is-narrow
         .field
           .control
             .select
-              = f.select :subscription_tier_eq, Subscription.all.map(&:tier), { include_blank: 'Tier: all' }
+              = f.select :subscription_tier_eq, Subscription.all.map(&:tier), { include_blank: 'Tier: all' },
+                data: { reflex: 'change' }
       .column.is-narrow
         .field
           .control
             .select
-              = f.select :status_eq, Course::STATUSES.map{ |status| [status.capitalize, status] }, { include_blank: 'Status: all' }
+              = f.select :status_eq, Course::STATUSES.map{ |status| [status.capitalize, status] }, { include_blank: 'Status: all' },
+                data: { reflex: 'change' }
       .column.is-narrow
         .field
           .control
             .select
-              = f.select :public_eq, [['Yes', true],['No', false]], include_blank: 'Public: all'
+              = f.select :public_eq, [['Yes', true],['No', false]], { include_blank: 'Public: all' },
+                data: { reflex: 'change' }
       .column.is-narrow
         .field
           .control.checkbox
             Hide ended?
-            = f.check_box :not_ended, {}
+            = f.check_box :not_ended, data: { reflex: 'change' }
       .column
         .buttons.is-pulled-right
-          = f.submit 'Search', class: 'button is-success'
-          %a.button{ href: request.path } Clear
+          = link_to 'Clear', request.path, class: 'button'

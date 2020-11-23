@@ -21,5 +21,4 @@ class CourseReflex < ApplicationReflex
   #   end
   #
   # Learn more at: https://docs.stimulusreflex.com
-
 end
