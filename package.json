@@ -2,7 +2,9 @@
   "name": "reactive-rails",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "5.2.1",
+    "@rails/actioncable": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "4.2.2",
     "cable_ready": "^4.4.0",
     "stimulus": "^1.1.1",
     "stimulus_reflex": "3.4.0-pre5"

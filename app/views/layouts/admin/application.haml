@@ -5,8 +5,9 @@
     %title ReactiveRails
     = csrf_meta_tags
     = csp_meta_tag
+    = action_cable_meta_tag
+    = javascript_pack_tag 'application'
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body.admin
     = render 'layouts/flash_messages'
     = render 'layouts/admin/menu'
