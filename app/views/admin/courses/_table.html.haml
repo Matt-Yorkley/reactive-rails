@@ -15,7 +15,7 @@
           .select.is-small.is-pulled-right
             = select_tag 'course[status]',
               options_for_select([['Set Status', '']] + Course::STATUSES.map{ |status| [status.capitalize, status] }),
-              data: { reflex: 'change->CourseReflex#bulk_update' }
+              data: { reflex: 'change->CourseReflex#bulk_update', controller: 'course' }
 
     %tbody
       - @courses.each do |course|

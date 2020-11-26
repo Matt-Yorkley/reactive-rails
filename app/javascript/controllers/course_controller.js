@@ -62,4 +62,9 @@ export default class extends ApplicationController {
   //   console.error('danceError', error);
   //   element.innerText = "Couldn't dance!"
   // }
+
+  afterBulkUpdate (dropdown) {
+    // Reset actions dropdown after bulk_update
+    dropdown.selectedIndex = 0;
+  }
 }
