@@ -2,3 +2,19 @@
   position: absolute;
   bottom: 0;
 }
+
+.dropdown.is-clickable {
+  .dropdown-menu {
+    margin-top: 0.25em;
+  }
+
+  .button:focus, .button:active {
+    ~ .dropdown-menu {
+      display: block;
+    }
+  }
+
+  .dropdown-menu:hover {
+    display: block;
+  }
+}

@@ -1,0 +1,12 @@
+.section.has-background-light
+  .container
+    .box
+      %h1.title
+        = @notification.title
+      %p.subtitle.has-text-grey
+        = @notification.created_at.strftime('%B %e, %H:%M')
+      %p
+        = @notification.description
+
+      %br
+      = link_to 'Back', notifications_path, class: 'button'

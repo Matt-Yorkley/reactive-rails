@@ -1,0 +1,18 @@
+.dropdown.is-clickable.is-right
+  .dropdown-trigger
+    %button.button.is-small.is-rounded{ class: notification_class(status) }
+      %span.icon.notification-button
+        %i.fa.fa-lg.fa-bell
+
+    .dropdown-menu
+      .dropdown-content
+        - if notifications.count.positive?
+          - notifications.each do |notification|
+            = link_to notification_path(notification), class: 'dropdown-item' do
+              %p
+                %b= notification.title
+              %p.has-text-grey
+                = notification.created_at.strftime('%B %e, %H:%M')
+        - else
+          .dropdown-item
+            No notifications

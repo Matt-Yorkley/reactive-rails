@@ -1,0 +1,35 @@
+.level.title-bar
+  .level-left
+    .level-item
+      %h1.title.is-4 Listing notifications
+  .level-right
+    .level-item
+      = link_to new_admin_notification_path, class: 'button is-success is-outlined' do
+        %span.icon
+          %i.fa.fa-plus
+        %span New Notification
+
+%table.table.is-striped.is-fullwidth.is-hoverable
+  %thead
+    %tr
+      %th Title
+      %th Description
+      %th Published
+      %th
+
+  %tbody
+    - @notifications.each do |notification|
+      %tr
+        %td= notification.title
+        %td= notification.description.truncate_words(5)
+        %td= notification.created_at.strftime('%B %e, %H:%M')
+        %td
+          .buttons.is-pulled-right
+            = link_to edit_admin_notification_path(notification), class: 'button is-small' do
+              %span.icon.has-text-link
+                %i.fa.fa-lg.fa-edit
+              %span Edit
+            = link_to admin_notification_path(notification), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-small' do
+              %span.icon.has-text-danger
+                %i.fa.fa-lg.fa-trash
+              %span Delete

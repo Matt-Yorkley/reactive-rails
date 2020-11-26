@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "home#index"
 
-  resources :subscriptions, only: :index
   resources :courses, only: [:index, :show]
+  resources :notifications, only: [:index, :show]
+  resources :subscriptions, only: :index
 
   namespace :admin do
     root to: "courses#index"
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
     resources :courses, except: :show do
       post :bulk_update, on: :collection, as: :bulk_update
     end
+    resources :notifications, except: :show
     resources :subscriptions, except: :show
     resources :users, except: :show
   end
