@@ -12,6 +12,13 @@ import StimulusReflex from 'stimulus_reflex'
  *
  * Learn more at: https://docs.stimulusreflex.com
  */
+
+// Clear old flash messages when triggering a reflex
+document.addEventListener('stimulus-reflex:before', () => {
+  const flash = document.getElementById('flash')
+  if (flash) flash.remove()
+})
+
 export default class extends Controller {
   connect () {
     StimulusReflex.register(this)
