@@ -12,11 +12,10 @@
         %th Status
         %th Public
         %th
-          = submit_tag 'Apply', class: 'button is-small is-pulled-right'
           .select.is-small.is-pulled-right
             = select_tag 'course[status]',
-              options_for_select([['Set Status', '']] + Course::STATUSES.map{ |status| [status.capitalize, status] })
-
+              options_for_select([['Set Status', '']] + Course::STATUSES.map{ |status| [status.capitalize, status] }),
+              data: { reflex: 'change->CourseReflex#bulk_update' }
 
     %tbody
       - @courses.each do |course|
