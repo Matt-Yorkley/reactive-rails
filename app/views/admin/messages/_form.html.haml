@@ -1,0 +1,7 @@
+= form_for [:admin, Message.new] do |f|
+  = hidden_field_tag "message[receiver_id]", params[:id]
+  .field
+    = f.label :content, 'Message', class: 'label'
+    = f.text_area :content, class: 'textarea'
+  .actions.buttons
+    = f.submit 'Send', class: 'button is-success'

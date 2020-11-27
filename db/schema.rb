@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_26_175255) do
+ActiveRecord::Schema.define(version: 2020_11_27_182625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 2020_11_26_175255) do
     t.string "tutor"
     t.string "image"
     t.index ["subscription_id"], name: "index_courses_on_subscription_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "notifications", force: :cascade do |t|

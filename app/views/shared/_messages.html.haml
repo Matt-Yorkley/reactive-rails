@@ -1,0 +1,18 @@
+.dropdown.is-clickable.is-right
+  .dropdown-trigger
+    %button.button.is-small.is-rounded{ class: notification_class(status) }
+      %span.icon.notification-button
+        %i.fa.fa-lg.fa-comment
+
+    .dropdown-menu
+      .dropdown-content
+        - if messages.count.positive?
+          - messages.each do |message|
+            = link_to user_messages_path(message.sender), class: 'dropdown-item' do
+              %p
+                %b= message.content.truncate_words(5)
+              %p.has-text-grey
+                = message.created_at.strftime('%B %e, %H:%M')
+        - else
+          .dropdown-item
+            No messages

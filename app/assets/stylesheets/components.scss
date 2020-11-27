@@ -127,3 +127,15 @@
   padding: 0;
   position: absolute;
 }
+
+.message-box {
+  border-left: 0.25em solid transparent;
+
+  &.sender {
+    border-color: $info;
+  }
+  &.receiver {
+    margin-left: 2em;
+    border-color: $warning;
+  }
+}

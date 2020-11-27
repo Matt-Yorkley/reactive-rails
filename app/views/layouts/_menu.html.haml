@@ -19,6 +19,9 @@
               .navbar-item
                 #notifications
                   = render partial: "shared/notifications", locals: { notifications: @latest_notifications, status: @notifications_status }
+                - unless current_user.admin
+                  #messages
+                    = render partial: "shared/messages", locals: { messages: @latest_messages, status: @messages_status }
             - if user_signed_in?
               = link_to "Log out", destroy_user_session_path, method: :delete, class: 'button is-outlined is-danger'
               - if current_user.admin

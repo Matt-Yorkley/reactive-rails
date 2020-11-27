@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :courses, only: [:index, :show]
   resources :notifications, only: [:index, :show]
   resources :subscriptions, only: :index
+  resources :users, shallow: true do
+    resources :messages, only: [:index, :create]
+  end
 
   namespace :admin do
     root to: "courses#index"
@@ -14,6 +17,10 @@ Rails.application.routes.draw do
     end
     resources :notifications, except: :show
     resources :subscriptions, except: :show
-    resources :users, except: :show
+    resources :users, except: :show do
+      member do
+        resources :messages, only: [:index, :create]
+      end
+    end
   end
 end

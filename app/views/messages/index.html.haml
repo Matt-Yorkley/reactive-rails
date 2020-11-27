@@ -1,0 +1,9 @@
+.section.has-background-light
+  .container
+    = render 'form'
+
+    %br
+
+    #conversation
+      - @messages.each do |message|
+        = render partial: 'shared/message', locals: { message: message }

@@ -1,0 +1,10 @@
+- message_origin ||= message_origin_class(message)
+
+.box.message-box{ class: message_origin }
+  %p.title.is-5
+    = message.sender.username
+  %p.subtitle.is-7.has-text-grey
+    = message.created_at.strftime('%B %e, %H:%M')
+  %hr
+  %p
+    = message.content

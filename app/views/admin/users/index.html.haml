@@ -25,6 +25,11 @@
         %td= user.admin ? 'Yes' : 'No'
         %td
           .buttons.is-pulled-right
+            - unless user.admin
+              = link_to admin_messages_path(user), class: 'button is-small' do
+                %span.icon.has-text-link
+                  %i.fa.fa-lg.fa-comment-o
+                %span Message
             = link_to edit_admin_user_path(user), class: 'button is-small' do
               %span.icon.has-text-link
                 %i.fa.fa-lg.fa-edit
