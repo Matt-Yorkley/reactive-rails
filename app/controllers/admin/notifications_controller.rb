@@ -1,5 +1,7 @@
 module Admin
   class NotificationsController < Admin::BaseController
+    include CableReady::Broadcaster
+
     before_action :set_notification, only: [:show, :edit, :update, :destroy]
 
     def index
@@ -22,6 +24,7 @@ module Admin
 
       respond_to do |format|
         if @notification.save
+          broadcast_notifications
           format.html { redirect_to admin_notifications_path, notice: 'Notification was successfully created.' }
         else
           format.html { render :new }
@@ -54,6 +57,18 @@ module Admin
 
     def notification_params
       params.require(:notification).permit(:title, :description)
+    end
+
+    def broadcast_notifications
+      notifications = Notification.latest
+
+      cable_ready["notifications"].inner_html(
+        selector: "#notifications",
+        html: render_to_string(
+          partial: "shared/notifications", locals: { notifications: notifications, status: 'active' }
+        )
+      )
+      cable_ready.broadcast
     end
   end
 end
