@@ -4,18 +4,20 @@
       .column.is-narrow
         .field
           .control
-            = f.text_field :name_or_username_or_email_cont, class: 'input', placeholder: 'Search'
+            = f.text_field :name_or_username_or_email_cont, class: 'input', placeholder: 'Search',
+              data: { reflex: 'input' }
       .column.is-narrow
         .field
           .control
             .select
-              = f.select :subscription_tier_eq, Subscription.all.map(&:tier), { include_blank: 'Tier: all' }
+              = f.select :subscription_tier_eq, Subscription.all.map(&:tier), { include_blank: 'Tier: all' },
+                data: { reflex: 'change' }
       .column.is-narrow
         .field
           .control
             .select
-              = f.select :admin_eq, [['Yes', true],['No', false]], include_blank: 'Admin: all'
+              = f.select :admin_eq, [['Yes', true],['No', false]], { include_blank: 'Admin: all' },
+                data: { reflex: 'change' }
       .column
         .buttons.is-pulled-right
-          = f.submit 'Search', class: 'button is-success'
           %a.button{ href: request.path } Clear
