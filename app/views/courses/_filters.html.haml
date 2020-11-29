@@ -15,4 +15,4 @@
               data: { reflex: 'change' }
     .column
       .buttons
-        = link_to 'Clear', request.path, class: 'button'
+        %a.button{ data: { reflex: 'click->SearchReflex#clear' } } Clear

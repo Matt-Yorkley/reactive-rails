@@ -20,4 +20,4 @@
                 data: { reflex: 'change' }
       .column
         .buttons.is-pulled-right
-          %a.button{ href: request.path } Clear
+          %a.button{ data: { reflex: 'click->SearchReflex#clear' } } Clear

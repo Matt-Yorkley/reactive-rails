@@ -33,4 +33,4 @@
             = f.check_box :not_ended, data: { reflex: 'change' }
       .column
         .buttons.is-pulled-right
-          = link_to 'Clear', request.path, class: 'button'
+          %a.button{ data: { reflex: 'click->SearchReflex#clear' } } Clear
