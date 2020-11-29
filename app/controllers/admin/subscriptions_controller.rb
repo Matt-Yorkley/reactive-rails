@@ -10,7 +10,7 @@ module Admin
     end
 
     def new
-      @subscription = Subscription.new
+      @subscription ||= Subscription.new
     end
 
     def edit
@@ -43,7 +43,7 @@ module Admin
     private
 
     def set_subscription
-      @subscription = Subscription.find(params[:id])
+      @subscription ||= Subscription.find(params[:id])
     end
 
     def subscription_params
