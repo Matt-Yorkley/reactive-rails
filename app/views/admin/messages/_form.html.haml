@@ -4,4 +4,5 @@
     = f.label :content, 'Message', class: 'label'
     = f.text_area :content, class: 'textarea'
   .actions.buttons
-    = f.submit 'Send', class: 'button is-success'
+    %a.button.is-success{ data: { reflex: 'click->MessageReflex#create' } }
+      Send
