@@ -14,6 +14,10 @@
 
       .navbar-end
         .navbar-item
+          - if user_signed_in?
+            %p.navbar-item.has-text-grey
+              Welcome,
+              = current_user.username
           .buttons
             - if user_signed_in?
               .navbar-item
