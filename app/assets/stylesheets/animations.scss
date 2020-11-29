@@ -7,3 +7,13 @@
 .animate-hide {
   animation: fade-out-hide 0.5s forwards 2s;
 }
+
+@keyframes fade-in-out {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.animate-flashing {
+  animation: fade-in-out 1s infinite;
+}

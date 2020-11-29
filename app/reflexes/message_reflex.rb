@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class MessageReflex < ApplicationReflex
+  def typing
+    update_typing_feedback
+
+    morph :nothing
+  end
+
   def create
     @message = Message.new(message_params)
     @message.sender_id = current_user.id
@@ -12,6 +18,8 @@ class MessageReflex < ApplicationReflex
     else
       flash[:alert] = "Message sending failed."
     end
+
+    update_typing_feedback("")
   end
 
   private
@@ -39,8 +47,26 @@ class MessageReflex < ApplicationReflex
     cable_ready.broadcast
   end
 
+  def update_typing_feedback(html=nil)
+    cable_ready["messages:user:#{receiver_id}"].inner_html(
+      selector: "#typing",
+      html: html || render_feedback
+    )
+    cable_ready.broadcast
+  end
+
+  def render_feedback
+    return "" unless typing?
+
+    render partial: "shared/typing", locals: { user: current_user }
+  end
+
   def receiver_id
     params[:message][:receiver_id]
+  end
+
+  def typing?
+    params[:message][:content].present?
   end
 
   def message_params

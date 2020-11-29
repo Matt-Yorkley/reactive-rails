@@ -2,7 +2,9 @@
   = hidden_field_tag "message[receiver_id]", params[:user_id]
   .field
     = f.label :content, 'Message', class: 'label'
-    = f.text_area :content, class: 'textarea'
+    = f.text_area :content, class: 'textarea', data: { reflex: 'input->MessageReflex#typing' }
   .actions.buttons
     %a.button.is-success{ data: { reflex: 'click->MessageReflex#create' } }
       Send
+
+    #typing
