@@ -34,7 +34,19 @@ class CourseReflex < ApplicationReflex
     end
   end
 
+  def validate
+    @course = Course.where(id: params[:id]).first_or_initialize
+    @course.assign_attributes(course_params)
+    @course.valid?
+  end
+
   private
+
+  def course_params
+    params.require(:course).permit(
+      :id, :title, :tutor, :description, :starts, :ends, :status, :public, :subscription_id
+    )
+  end
 
   def bulk_params
     params.require(:course).permit(:status)

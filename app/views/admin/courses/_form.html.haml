@@ -1,15 +1,15 @@
 = form_for [:admin, @course] do |f|
   .field
     = f.label :title, class: 'label'
-    = f.text_field :title, class: 'input'
+    = f.text_field :title, class: 'input', data: { reflex: 'input->CourseReflex#validate' }
     = field_errors(@course, :title)
   .field
     = f.label :tutor, class: 'label'
-    = f.text_field :tutor, class: 'input'
+    = f.text_field :tutor, class: 'input', data: { reflex: 'input->CourseReflex#validate' }
     = field_errors(@course, :tutor)
   .field
     = f.label :description, class: 'label'
-    = f.text_area :description, class: 'textarea'
+    = f.text_area :description, class: 'textarea', data: { reflex: 'input->CourseReflex#validate' }
     = field_errors(@course, :description)
   .field
     = f.label :starts, class: 'label'

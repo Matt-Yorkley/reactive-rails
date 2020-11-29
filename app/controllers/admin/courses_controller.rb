@@ -11,7 +11,7 @@ module Admin
     end
 
     def new
-      @course = Course.new
+      @course ||= Course.new
     end
 
     def edit
@@ -54,7 +54,7 @@ module Admin
     private
 
     def set_course
-      @course = Course.find(params[:id])
+      @course ||= Course.find(params[:id])
     end
 
     def course_params
