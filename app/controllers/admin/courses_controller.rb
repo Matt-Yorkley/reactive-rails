@@ -4,7 +4,7 @@ module Admin
 
     def index
       @q = Course.order(:created_at).ransack(params[:q])
-      @pagy, @courses = pagy(@q.result, items: 6)
+      @pagy, @courses = pagy(@q.result, items: 6, page: @page)
     end
 
     def show
