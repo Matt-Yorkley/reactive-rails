@@ -21,7 +21,11 @@
         %td= user.name
         %td= user.username
         %td= user.email
-        %td= user.subscription.tier
+        %td
+          = form_for [:admin, user] do |f|
+            = hidden_field_tag :id, user.id
+            = f.collection_select :subscription_id, Subscription.all, :id, :tier, {},
+              id: "user_#{user.id}", data: { reflex: 'change->UserReflex#update' }
         %td= user.admin ? 'Yes' : 'No'
         %td
           .buttons.is-pulled-right
