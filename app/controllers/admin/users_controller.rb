@@ -11,7 +11,7 @@ module Admin
     end
 
     def new
-      @user = User.new
+      @user ||= User.new
     end
 
     def edit
@@ -44,7 +44,7 @@ module Admin
     private
 
     def set_user
-      @user = User.find(params[:id])
+      @user ||= User.find(params[:id])
     end
 
     def user_params
