@@ -19,35 +19,25 @@ module Admin
     def create
       @subscription = Subscription.new(subscription_params)
 
-      respond_to do |format|
-        if @subscription.save
-          format.html { redirect_to admin_subscriptions_path, notice: 'Subscription was successfully created.' }
-          format.json { render :show, status: :created, location: @subscription }
-        else
-          format.html { render :new }
-          format.json { render json: @subscription.errors, status: :unprocessable_entity }
-        end
+      if @subscription.save
+        redirect_to admin_subscriptions_path, notice: 'Subscription was successfully created.'
+      else
+        render :new
       end
     end
 
     def update
-      respond_to do |format|
-        if @subscription.update(subscription_params)
-          format.html { redirect_to admin_subscriptions_path, notice: 'Subscription was successfully updated.' }
-          format.json { render :show, status: :ok, location: @subscription }
-        else
-          format.html { render :edit }
-          format.json { render json: @subscription.errors, status: :unprocessable_entity }
-        end
+      if @subscription.update(subscription_params)
+        redirect_to admin_subscriptions_path, notice: 'Subscription was successfully updated.'
+      else
+        render :edit
       end
     end
 
     def destroy
       @subscription.destroy
-      respond_to do |format|
-        format.html { redirect_to admin_subscriptions_url, notice: 'Subscription was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+
+      redirect_to admin_subscriptions_url, notice: 'Subscription was successfully destroyed.'
     end
 
     private

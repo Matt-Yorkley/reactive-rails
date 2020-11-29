@@ -20,46 +20,34 @@ module Admin
     def create
       @course = Course.new(course_params)
 
-      respond_to do |format|
-        if @course.save
-          format.html { redirect_to admin_courses_path, notice: 'Course was successfully created.' }
-          format.json { render :show, status: :created, location: @course }
-        else
-          format.html { render :new }
-          format.json { render json: @course.errors, status: :unprocessable_entity }
-        end
+      if @course.save
+        redirect_to admin_courses_path, notice: 'Course was successfully created.'
+      else
+        render :new
       end
     end
 
     def update
-      respond_to do |format|
-        if @course.update(course_params)
-          format.html { redirect_to admin_courses_path, notice: 'Course was successfully updated.' }
-          format.json { render :show, status: :ok, location: @course }
-        else
-          format.html { render :edit }
-          format.json { render json: @course.errors, status: :unprocessable_entity }
-        end
+      if @course.update(course_params)
+        redirect_to admin_courses_path, notice: 'Course was successfully updated.'
+      else
+        render :edit
       end
     end
 
     def destroy
       @course.destroy
-      respond_to do |format|
-        format.html { redirect_to admin_courses_url, notice: 'Course was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+
+      redirect_to admin_courses_url, notice: 'Course was successfully destroyed.'
     end
 
     def bulk_update
       @courses = Course.where(id: params[:ids]).all
 
-      respond_to do |format|
-        if @courses.update_all(bulk_params.to_h)
-          format.html { redirect_to admin_courses_path, notice: 'Courses successfully updated.' }
-        else
-          format.html { redirect_to admin_courses_path, alert: 'An error occurred whilst updating courses.' }
-        end
+      if @courses.update_all(bulk_params.to_h)
+        redirect_to admin_courses_path, notice: 'Courses successfully updated.'
+      else
+        redirect_to admin_courses_path, alert: 'An error occurred whilst updating courses.'
       end
     end
 
