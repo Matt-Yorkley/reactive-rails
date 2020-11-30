@@ -3,6 +3,7 @@ module Admin
     include Rest::Courses
 
     before_action :set_course, only: [:show, :edit, :update, :destroy]
+    before_action :authorize_resource!
 
     def index
       index_course

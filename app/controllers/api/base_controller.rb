@@ -1,5 +1,7 @@
 module Api
   class BaseController < ActionController::Metal
+    include AuthorizeResource
+
     before_action :authenticate_api_user
 
     private

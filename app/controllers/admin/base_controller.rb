@@ -1,5 +1,7 @@
 module Admin
   class BaseController < ApplicationController
+    include AuthorizeResource
+
     layout 'admin/application'
     before_action :authorize_admin
 
