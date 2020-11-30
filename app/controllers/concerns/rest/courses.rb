@@ -1,3 +1,6 @@
+# Refactoring experiment with namespaced api controllers, admin controllers, and reflexes.
+# The business logic of the actions can be defined once and shared across all three contexts.
+
 module Rest
   module Courses
     extend ActiveSupport::Concern
