@@ -14,4 +14,10 @@ Rails.application.routes.draw do
     resources :subscriptions, except: :show
     resources :users, except: :show
   end
+
+  namespace :api do
+    resources :courses do
+      post :bulk_update, on: :collection, as: :bulk_update
+    end
+  end
 end
