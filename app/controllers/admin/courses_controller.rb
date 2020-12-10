@@ -1,10 +1,11 @@
 module Admin
   class CoursesController < Admin::BaseController
+    include Rest::Courses
+
     before_action :set_course, only: [:show, :edit, :update, :destroy]
 
     def index
-      @q = Course.order(:created_at).ransack(params[:q])
-      @pagy, @courses = pagy(@q.result, items: 6, page: @page)
+      index_course
     end
 
     def show
@@ -18,9 +19,7 @@ module Admin
     end
 
     def create
-      @course = Course.new(course_params)
-
-      if @course.save
+      if create_course
         redirect_to admin_courses_path, notice: 'Course was successfully created.'
       else
         render :new
@@ -28,7 +27,7 @@ module Admin
     end
 
     def update
-      if @course.update(course_params)
+      if update_course
         redirect_to admin_courses_path, notice: 'Course was successfully updated.'
       else
         render :edit
@@ -36,35 +35,17 @@ module Admin
     end
 
     def destroy
-      @course.destroy
+      destroy_course
 
       redirect_to admin_courses_url, notice: 'Course was successfully destroyed.'
     end
 
     def bulk_update
-      @courses = Course.where(id: params[:ids]).all
-
-      if @courses.update_all(bulk_params.to_h)
+      if bulk_update_course
         redirect_to admin_courses_path, notice: 'Courses successfully updated.'
       else
         redirect_to admin_courses_path, alert: 'An error occurred whilst updating courses.'
       end
-    end
-
-    private
-
-    def set_course
-      @course = Course.find(params[:id])
-    end
-
-    def course_params
-      params.require(:course).permit(
-        :title, :tutor, :description, :starts, :ends, :status, :public, :subscription_id
-      )
-    end
-
-    def bulk_params
-      params.require(:course).permit(:status)
     end
   end
 end
