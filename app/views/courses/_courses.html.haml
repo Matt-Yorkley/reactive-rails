@@ -4,12 +4,12 @@
       .tile.is-parent.is-4
         .tile.is-child.card.course-card
           .card-image
-            = link_to course do
+            %a{ data: { reflex: 'click->CourseReflex#open_modal', id: course.id } }
               %span.tag.is-medium{class: course_status_class(course.status)}
                 = course.status
               = image_tag "courses/#{course.image}"
           .card-content
-            = link_to course do
+            %a{ data: { reflex: 'click->CourseReflex#open_modal', id: course.id } }
               %h2.title= course.title
             %h3.subtitle.has-text-grey= course.tutor
 

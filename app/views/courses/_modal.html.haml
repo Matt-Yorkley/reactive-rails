@@ -1,0 +1,24 @@
+.modal-background{ data: { reflex: 'click->CourseReflex#close_modal' } }
+
+.container
+  %a.close-modal.button.is-danger{ data: { reflex: 'click->CourseReflex#close_modal' } }
+    %span.icon
+      %i.fa.fa-times
+  .columns.box
+    .column
+      %span.tag.is-medium.is-pulled-right{class: course_status_class(course.status)}
+        = course.status
+      %h1.title
+        = course.title
+      %p.subtitle
+        = course.tutor
+      %p
+        = course.description
+      %hr
+      %p
+        %b Date(s):
+        = display_course_dates(course)
+      %br
+
+    .column.is-two-fifths
+      = image_tag "courses/#{course.image}"

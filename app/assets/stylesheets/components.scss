@@ -121,3 +121,21 @@
     box-shadow: none;
   }
 }
+
+#modals {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+
+.modal-background {
+  height: 100%;
+  position: fixed;
+  cursor: pointer;
+}
+
+.close-modal {
+  top: 1em;
+  right: -2em;
+  position: absolute;
+}

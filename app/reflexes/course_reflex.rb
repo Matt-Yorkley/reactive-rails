@@ -22,6 +22,16 @@ class CourseReflex < ApplicationReflex
   #
   # Learn more at: https://docs.stimulusreflex.com
 
+  def open_modal
+    course = Course.find(element.dataset[:id])
+
+    morph '#modals', render(partial: 'courses/modal', locals: { course: course })
+  end
+
+  def close_modal
+    morph '#modals'
+  end
+
   def bulk_update
     return flash[:alert] = 'Not updated; no courses were selected.' if params[:ids].blank?
 
